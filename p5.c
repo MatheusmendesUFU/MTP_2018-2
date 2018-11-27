@@ -1,3 +1,6 @@
+//Matheus mendes dos santos
+//11721ETE007
+
 #include <stdio.h>
 #define N 50
 
@@ -13,7 +16,7 @@ LCG;
 
 void semente(LCG * r, Bytes8 seed) {
    // constantes do POSIX [de]rand48, glibc [de]rand48[_r]
-   // ULL transforma a constante ’int’ em ’unsigned long long int’
+   // ULL transforma a constante â€™intâ€™ em â€™unsigned long long intâ€™
    r->a = 0x5DEECE66DULL;
    r->c = 11ULL;
    r->m = (1ULL << 48);
@@ -39,7 +42,7 @@ int main(){
    LCG random;
    semente(&random, 123456); 
    
-   float vetor[N]; //porque não pode deixar *vetor ?
+   float vetor[N]; //porque nÃ£o pode deixar *vetor ?
    char opcao;
    printf("\n\n\t");
    gera_numeros_printa(&vetor[0], N, 0.5, 1.5, &random);
