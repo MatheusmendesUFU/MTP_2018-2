@@ -1,3 +1,6 @@
+//Matheus mendes dos santos
+//1172ETE007
+
 #include <stdio.h>
 int main(){
 	int estado = 0, i = 0;
