@@ -1,4 +1,4 @@
-// Matheus Mendes dos Santos
+// Matheus mendes dos santos
 // 11721ETE007
 
 
@@ -33,7 +33,7 @@ void  mostrap (Ponto * pi, Ponto * pf) {
 int  main ()
 
 {
-	nao assinado  int N;
+	não assinado  int N;
 	Ponto * p;
 	printf ( " Entre com o numero de pontos " );
 	scanf ( " % d " , & N);
