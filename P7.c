@@ -57,7 +57,7 @@ int main(){
   unsigned int n = 0, escolha = 0;
   Ponto *pontos;
   char nome[] = "pontos.dat";
-  printf("1 - Digitar o numero de vezes que o ciclo trigonometrico vai ser dividido.\n2 - Mostrar as coordenadas dos pontos que dividem a circunferência.\nEscolha: ");
+  printf("1 - Digitar o numero de vezes que o ciclo trigonometrico vai ser dividido.\n2 - Mostrar as coordenadas dos pontos que dividem a circunferÃªncia.\nEscolha: ");
   scanf("%d", &escolha);
   if(escolha == 1){
     printf("Digite o numero de vezes em que o ciclo trigonometrico vai ser dividido: ");
