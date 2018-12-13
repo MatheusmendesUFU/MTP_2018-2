@@ -1,167 +1,165 @@
 //Matheus mendes dos santos
 //11721ETE007
+// Como recebi no e-mail, o trabalho não estava certo. Portanto eu o mudei. Att
 
-# include  < stdio.h >
+#include <stdio.h>
+#include <math.h>
 
- preenche void ( char bits [])
-{
-	printf ( " \ n Preencha com o valor that deseja converter: " );
-	scanf ( " % s " , bits);
+char dicionario[64];
+
+int length(char str[]) {
+    int i;
+    for (i = 0; str[i]; ++i);
+    return i - 1;
+}      
+
+void remove0(char bin[]) {
+    int i, j = 0, grava = 0;
+    for (i = 0; bin[i]; ++i) {
+        if (bin[i] != '0') {
+            grava = 1;
+        }
+        if (grava) {
+              bin[j++] = bin[i];
+        }
+
+    }        
+    bin[j] = 0;
+
 }
-int  conv2oct ( int num, int b)
-{
-    int aux = 0 , i = 1 ;
-    enquanto (num! = 0 )
-    {
-        aux + = (num% b) * i;
-        num / = b;
-        i * = 10 ;
+
+char numToApar(int num) {
+        if (num > 63) { num = 1; };
+    return dicionario[num];
+}
+
+
+void decTo(int dec, char bin[], int base, int bits) {
+
+    bin[bits--] = 0;
+    while (bits >= 0) {
+        bin[bits] = numToApar(dec % base);
+        bits--;
+              dec = dec / base;
     }
-    return aux;
-}
-void  conv2hex ( int num, int b, int menu)
-{
-	int i = 0 , j = 0 , k = 0 , aux = 0 , n = 0 ;
-	char hex [ 256 ], temp [ 256 ];
-	k = num;
-	enquanto (k! = 0 )
-	{
-		aux = k% b;
-		se (aux < 10 )
-			temp [j ++] = 48 + aux;
-		outro
-		    temp [j ++] = 55 + aux;
-		k = k / b;
-		n ++;
-	}
-	para (i = n- 1 , j = 0 ; i + 1 ! = 0 ; --i, ++ j)
-		hex [j] = temp [i];
-	hex [n] = ' \ 0 ' ;
-	printf ( " \ n | \" % i \ " + \" % i \ " | \" % s \ " | \ n " , menu, num, hex);
-}
-int  conv2dec ( char bits [], int b)
-{
-	int i = 0 , aux = 0 ;
-	para (i = 0 ; bits [i]! = ' \ 0 ' ; i ++)
-	{
-	    if (bits [i] <= 57 && bits [i]> = 48 )
-	    {
-            aux = aux * b + (bits [i] - ' 0 ' );
-	    }
-        else  if (bits [i]> = 65 )
-        {
-            {
-        	    if (bits [i]> = 97 )
-    	        {
-    	        	bits [i] - = 32 ;
-    	        	aux = aux * b + (bits [i] - ' 7 ' );
-				}
-    	        outro
-        	        aux = aux * b + (bits [i] - ' 7 ' );
-		    }
-	    }
+    if (base != 2) {
+        remove0(bin);
     }
-    return aux;
-}
-int  conv2bin ( int num, int b)
-{
-	caractere bin [ 256 ];
-	inti = 0 , j = 0 , k = 1 , n = 0 , aux = 0 , aux2;
-	para (n = 0 ; num> = ( 1 << n); n ++);
-	para (i = 1 ; i <= n; i ++)
-	{
-		if (num% 2 == 0 )
-		{
-			bin [ni] = ' 0 ' ;
-			num = num / 2 ;
-		}
-		outro
-		{
-			bin [ni] = ' 1 ' ;
-			num = (num- 1 ) / 2 ;
-		}
-	}
-	para (i = 0 ; bin [i]! = ' \ 0 ' ; i ++)
-	{
-		k = 1 ;
-		para (j = 1 ; j <(ni); j ++)
-		    k = k * b;
-		aux + = (bin [i] - ' 0 ' ) * (k);
-	}
-    return aux;
-}
-int  main ()
-{
-	bits de char [ 256 ];
-	int menu = 0 , b = 0 , cv = 0 , num = 0 , teste = 0 ;
-	Faz
-	{
-		printf ( " \ n Escolha uma conversao: \ n [1] Binario para Decimal \ n [2] Binario para Hexadecimal \ n [3] Hexadecimal para Decimal \ n [4] Hexadecimal para Binario \ n [5] Decimal para Binario \ n [6] Decimal para Hexadecimal \ n [7] Octal para Decimal \ n [8] Decimal para Octal \ n [9] Sair do programa \ n : " );
-		scanf ( " % i " , & menu);
-		interruptor (menu)
-		{
-			case  1 : // Bin -> Dec
-				b = 2 ;
-				preenche (bits);
-                cv = conv2dec (bits, b);
-				printf ( " \ n | \" % i \ " + \" % s \ " | \" % i \ " | \ n " , menu, bits, cv);
-				pausa ;
-			case  2 : // Bin -> Hex
-			    b = 2 ;
-			    preenche (bits);
-			    num = conv2dec (bits, b);
-			    b = 16 ;
-                conv2hex (num, b, menu);
-				pausa ;
-			caso  3 : // Hex -> Dez
-				b = 16 ;
-				preenche (bits);
-                cv = conv2dec (bits, b);
-				printf ( " \ n | \" % i \ " + \" % s \ " | \" % i \ " | \ n " , menu, bits, cv);
-				pausa ;
-			case  4 : // Hex -> Bin
-				b = 16 ;
-				preenche (bits);
-				num = conv2dec (bits, b);
-				b = 10 ;
-				cv = conv2bin (num, b);
-				printf ( " \ n | \" % i \ " + \" % s \ " | \" % i \ " | \ n " , menu, bits, cv);
-				num = 0 ;
-				pausa ;
-			case  5 : // Dec -> Bin
-				b = 10 ;
-				printf ( " \ n Preencha com valor o um convertido ser: " );
-	            scanf ( " % i " , & num);
-                cv = conv2bin (num, b);
-				printf ( " \ n | \" % i \ " + \" % i \ " | \" % i \ " | \ n " , menu, num, cv);
-				pausa ;
-			case  6 : // Dec -> Hex
-			    b = 16 ;
-			    printf ( " \ n Preencha com valor o um convertido ser: " );
-	            scanf ( " % i " , & num);
-                conv2hex (num, b, menu);
-				pausa ;
-			case  7 : // Oc -> Dez
-				b = 8 ;
-				preenche (bits);
-                cv = conv2dec (bits, b);
-				printf ( " \ n | \" % i \ " + \" % s \ " | \" % i \ " | \ n " , menu, bits, cv);
-				pausa ;
-			caso  8 : // Dez -> Oc
-			    b = 8 ;
-			    printf ( " \ n Preencha com valor o um convertido ser: " );
-            	scanf ( " % i " , & num);
-			    cv = conv2oct (num, b);
-			    printf ( " \ n | \" % i \ " + \" % i \ " | \" % i \ " | \ n " , menu, num, cv);
-				pausa ;
-			padrão :
-			    se (menu! = 9 )
-			    {
-			    	printf ( " \ n \ n Escolha invalida \ n \ n " );
-			        pausa ;
-				}
-		}
-	} enquanto (menu! = 9 );
-	return  0 ;
+
+
+
 }
 
+int aprToNum(char num, int base) {
+    if (base == 16) {
+        if (num <= 'z' && num >= 'a') {
+            num -= ('a' - 'A');
+   
+
+     }
+    }
+    int j;
+    for (j = 0; j <= base; ++j) {
+        if (num == dicionario[j]) {
+            return j;
+        }
+       
+    }
+return 1;
+}
+
+
+int baseToDec(char bin[], int actualBase) {
+    int i = length(bin);
+    int soma = 0;
+    int j = 0;
+    for (; i >= 0; i--) {
+        int num = aprToNum(bin[i], actualBase);
+        soma += num * pow(actualBase, j++);
+    }
+    return soma;
+}
+
+void brincar() {
+    char bin[128];
+    char nome[] = "ELA E LINDA";
+    printf("%s\n", nome);
+    int base = 64;
+    int i;
+    for (i = 0; nome[i]; ++i) {
+        decTo(nome[i], bin, base, 8);
+        printf("%s ", bin);
+    }
+}
+
+void criarDicionario() {
+    int j;
+    int n = '0';
+    for (j = 0; j <= 61; ++j) {
+
+        dicionario[j] = n;
+        if (n == '9') {
+            n = 'A';
+        } else if (n == 'Z') {
+            n = 'a';
+        } else if (n == 'z') {
+            break;
+        } else {
+            n++;
+        }
+    }
+    dicionario[62] = '/';
+    dicionario[63] = '+';
+
+}
+
+int main() {
+    criarDicionario();
+    int escolha = 0;
+    char str[650] = {0};
+
+    scanf("%d", &escolha);
+    getchar();
+    switch (escolha) {
+        case 1://bin to dec
+            scanf("%s", str);
+            printf("%d", baseToDec(str, 2));
+            break;
+        case 2://bin to Hex
+            scanf("%s", str);
+            decTo(baseToDec(str, 2), str, 16, 8);
+            printf("%s", str);
+            break;
+        case 3://hex to dec
+            scanf("%s", str);
+            printf("%d", baseToDec(str, 16));
+            break;
+        case 4://hex to bin
+            scanf("%s", str);
+            decTo(baseToDec(str, 16), str, 2, 15);
+
+            printf("%s", str);
+            break;
+        case 5:
+            scanf("%d", &escolha);
+            decTo(escolha, str, 2, 10);
+            printf("%s", str);
+            break;
+        case 6:
+            scanf("%d", &escolha);
+            decTo(escolha, str, 16, 16);
+            printf("%s", str);
+            break;
+        case 7://oct to dec
+            scanf("%s", str);
+            printf("%d", baseToDec(str, 8));
+            break;
+        case 8://dec to oct
+            scanf("%d", &escolha);
+            decTo(escolha, str, 8, 16);
+            printf("%s", str);
+
+    }
+    printf("\n");
+    return 0;
+}
